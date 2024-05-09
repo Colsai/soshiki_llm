@@ -7,16 +7,20 @@ import requests
 import json
 import requests
 import warnings
-
+import configparser
 warnings.filterwarnings('ignore')
 
-#OpenAI API Key
-openai.api_key = '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'
+# Create a ConfigParser object
+config = configparser.ConfigParser()
+
+# Read the config.ini file
+config.read(r'src/keys.ini')
+
 model_select = "gpt-3.5-turbo-16k"
 
 client = OpenAI(
     # defaults to os.environ.get("OPENAI_API_KEY")
-    api_key='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',
+    api_key=config['openai']['openai_key'],
 )
 
 #########################

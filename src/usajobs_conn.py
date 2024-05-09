@@ -1,9 +1,16 @@
 import requests
+import configparser
+
+# Create a ConfigParser object
+config = configparser.ConfigParser()
+
+# Read the config.ini file
+config.read(r'src/keys.ini')
 
 if __name__ == '__main__':
     # Your API key and email associated with the API key
-    api_key = 'TLhMOf9i7evIDxptFhKAtYGHQrwi+6Wyi3QHrMc8QrA='
-    user_email = 'schirabay@gmail.com'
+    api_key = config['usajobs']['usajobs_key']
+    user_email = config['usajobs']['user_email']
 
     # The API URL
     url = 'https://data.usajobs.gov/api/Search'
