@@ -14,7 +14,7 @@ warnings.filterwarnings('ignore')
 config = configparser.ConfigParser()
 
 # Read the config.ini file
-config.read(r'src/keys.ini')
+config.read(r'credentials/keys.ini')
 
 model_select = "gpt-3.5-turbo-16k"
 

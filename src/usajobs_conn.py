@@ -5,7 +5,7 @@ import configparser
 config = configparser.ConfigParser()
 
 # Read the config.ini file
-config.read(r'src/keys.ini')
+config.read(r'credentials/keys.ini')
 
 if __name__ == '__main__':
     # Your API key and email associated with the API key
