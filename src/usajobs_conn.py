@@ -1,35 +1,42 @@
 import requests
 import configparser
 
-# Create a ConfigParser object
+########################
+# Project Credentials
+########################
 config = configparser.ConfigParser()
-
-# Read the config.ini file
 config.read(r'credentials/keys.ini')
 
-if __name__ == '__main__':
-    # Your API key and email associated with the API key
-    api_key = config['usajobs']['usajobs_key']
-    user_email = config['usajobs']['user_email']
+# API Key Information
+api_key = config['usajobs']['usajobs_key']
+user_email = config['usajobs']['user_email']
 
+########################
+# USAJobs Functions
+########################
+def return_joblist(keyword = '',
+                   position_title = '',
+                   loc = ''):
     # The API URL
     url = 'https://data.usajobs.gov/api/Search'
 
     # Headers required by USAJOBS API
     headers = {
         'Authorization-Key': api_key,
-        'User-Agent': user_email  # This should be the email associated with your API key
+        'User-Agent': user_email
     }
 
-    # Parameters for the API call, for example, searching for jobs by keyword, location, etc.
+    # These should be pulled based on the information from the LLM
     params = {
         'Keyword': 'engineering',
         'PositionTitle': 'engineer',
         'LocationName': 'Washington, DC'
     }
 
-    # Making the GET request
-    response = requests.get(url, headers=headers, params=params)
+    try:
+        response = requests.get(url, headers=headers, params=params)
+    except Exception as e:
+        print(e)
 
     # Checking if the request was successful
     if response.status_code == 200:
@@ -38,3 +45,7 @@ if __name__ == '__main__':
         print(data)
     else:
         print('Failed to retrieve data:', response.status_code)
+
+if __name__ == '__main__':
+    pass
+    #return_joblist
