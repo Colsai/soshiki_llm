@@ -12,12 +12,10 @@ warnings.filterwarnings('ignore')
 
 # Create a ConfigParser object
 config = configparser.ConfigParser()
-
-# Read the config.ini file
 config.read(r'credentials/keys.ini')
 
+# OpenAI Parameters
 model_select = "gpt-3.5-turbo-16k"
-
 client = OpenAI(
     # defaults to os.environ.get("OPENAI_API_KEY")
     api_key=config['openai']['openai_key'],
@@ -61,4 +59,5 @@ def generate_jobtype(user_query,
 
 if __name__ == '__main__':
     print(generate_jobtype(user_query = "I'm interested in math, science, and being a teacher."))
+
     print(generate_jobdesc(user_query = ""))
